@@ -1,0 +1,48 @@
+{
+    "list":[{
+        "categoryName":"全身燃脂",
+        "lesson":[{
+                "img":"/upload/1.jpg",
+                "lessonName":"有氧",
+                "totaltimeDesc":1024,
+                "calorie":"100"
+
+            },{
+                "img":"/upload/2.jpg",
+                "lessonName":"无氧",
+                "totaltimeDesc":512,
+                "calorie":"60"
+
+            }]
+    },{
+        "categoryName":"提升精力",
+        "lesson":[{
+                "img":"/upload/2.jpg",
+                "lessonName":"有氧",
+                "totaltimeDesc":1512,
+                "calorie":"100"
+
+            },{
+                "img":"/upload/1.jpg",
+                "lessonName":"无氧",
+                "totaltimeDesc":24,
+                "calorie":"60"
+
+            }]
+    },{
+        "categoryName":"有氧运动",
+        "lesson":[{
+                "img":"/upload/1.jpg",
+                "lessonName":"有氧",
+                "totaltimeDesc":1512,
+                "calorie":"100"
+
+            },{
+                "img":"/upload/2.jpg",
+                "lessonName":"有氧",
+                "totaltimeDesc":24,
+                "calorie":"60"
+
+            }]
+    }]
+}

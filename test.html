@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    img{
+      width:100px;
+    }
+
+    img:hover{
+      background:url('https://gw.alicdn.com/tfs/TB1oZTMgvBNTKJjy0FdXXcPpVXa-769-288.jpg') no-repeat;
+    }
+
+    .loading{
+      transition:width 0.2s ease-in-out;
+      height:10px;
+      background:#f00;
+      width:0;
+    }
+    
+    /* 子元素背景图 */
+    .main{
+      display:none;
+    }
+    .child-img{
+      width:500px;
+      height:500px;
+      background-size:contain;
+    }
+
+    .add-bg{
+      width:100px;
+      height:100px;
+    }
+
+
+    .dialog{
+      width:100px;
+      height:100px;
+      background:#f00;
+      position:fixed;
+      -webkit-transition:all 0.5s ease-in-out;
+      -webkit-transform-origin:left top;
+    }
+
+
+    .dialog-show{
+      left:50%;
+      top:50%;
+      -webkit-transform:translate(-50%,-50%) scale(1);
+      z-index:1024;
+    }
+    .dialog-hide{
+      left:0;
+      top:500px;
+      -webkit-transform:translate(0,0) scale(0);
+      opacity:0;
+      z-index:-1;
+    }
+  </style>
+</head>
+<body>
+  <div style="background:url('http://img95.699pic.com/photo/00048/3097.jpg_wh860.jpg') no-repeat;"></div>
+  <img src="http://gw.alicdn.com/tfs/TB1g_TPb_nI8KJjy0FfXXcdoVXa-481-146.png" />
+
+  <button class="btn-append-img">添加dom</button>
+  <button class="show-main">显示子元素</button>
+  <button class="btn-add-bg">添加背景图</button>
+  <button class="btn-add-img">添加图片</button>
+
+  <button class="btn-dialog-show">显示</button>
+  <button class="btn-dialog-hide">隐藏</button>
+
+  <div class="loading"></div>
+  <!-- 子元素背景图 -->
+  <div class="main">
+    <div class="child-img"></div>
+  </div>
+
+  <!-- 添加背景图 -->
+  <div class="add-bg"></div>
+
+  <!-- 添加背景图 -->
+  <img class="add-img" src="">
+  
+  <!-- 弹出层回收 -->
+  <div class="dialog dialog-show">
+
+  </div>
+
+</body>
+</html>
+
+<script>
+
+  page={
+    data:{
+      imgList:[{
+        imgUrl: 'http://img95.699pic.com/photo/00048/3097.jpg_wh860.jpg'
+      }, {
+        imgUrl: 'http://gw.alicdn.com/tfs/TB1g_TPb_nI8KJjy0FfXXcdoVXa-481-146.png'
+      }, {
+        imgUrl: 'https://gw.alicdn.com/tfs/TB1oZTMgvBNTKJjy0FdXXcPpVXa-769-288.jpg'
+      }],
+      loadRate:0
+    },
+    init(){
+      this.$btnShowMain=document.querySelector('.show-main');
+      this.$main=document.querySelector('.main');
+      this.$loading=document.querySelector('.loading');
+
+      // 添加背景
+      this.$addBg = document.querySelector('.add-bg');
+      this.$btnAddBg = document.querySelector('.btn-add-bg');
+
+      // 添加Dom
+      this.$btnAppendImg = document.querySelector('.btn-append-img');
+
+      // 添加图片
+      this.$addImg = document.querySelector('.add-img');
+      this.$btnAddImg = document.querySelector('.btn-add-img');
+      
+      // 弹出层
+      this.$dialog = document.querySelector('.dialog');
+      this.$btnDialogHide = document.querySelector('.btn-dialog-hide');
+      this.$btnDialogShow = document.querySelector('.btn-dialog-show');
+
+      this.render()
+      this.event()
+    },
+    render(){
+      this.preLoad(this.data.imgList)
+      // this.preloadCss(this.data.imgList)
+    },
+    getRate(imgLength){
+      this.data.loadRate++
+      const rate = this.data.loadRate / imgLength * 100;
+      this.$loading.style.width = rate + '%'
+    },
+    preLoad(imgList) {
+      const imgLength = imgList.length;
+      imgList.map((item, index) => {
+        const { imgUrl } = item;
+        const newImg = new Image();
+        newImg.src = imgUrl;
+        if (newImg.complete) {
+            this.getRate(imgLength)
+        } else {
+          newImg.onload = () => {
+            this.getRate(imgLength)
+          }
+        };
+      })
+    },
+    event(){
+      this.$btnShowMain.addEventListener('click', () => {
+        this.$main.style.display = 'block'
+      })
+
+      this.$btnAddBg.addEventListener('click', () => {
+        this.addBackground(this.data.imgList[1].imgUrl)
+      })
+
+      this.$btnAddImg.addEventListener('click', () => {
+        this.addImg(this.data.imgList[1].imgUrl)
+      })
+
+      this.$btnAppendImg.addEventListener('click', () => {
+        this.appendImg(this.data.imgList[0].imgUrl)
+      })
+      
+      this.$btnDialogHide.addEventListener('click',()=>{
+        this.$dialog.className='dialog dialog-hide'
+      })
+
+      this.$btnDialogShow.addEventListener('click',()=>{
+        this.$dialog.className='dialog dialog-show'
+      })
+    },
+    addBackground(bgUrl) {
+      this.$addBg.style.background = `url(${bgUrl})`;
+    },
+    addImg(imgUrl){
+
+      var url = imgUrl;
+      var img = new Image();
+      img.src = url;
+      console.log(img.complete)
+      this.$addImg.src= imgUrl
+    },
+    appendImg(imgUrl) {
+      const $img = document.createElement('img')
+      $img.src = imgUrl
+      document.body.appendChild($img)
+    }
+  }
+
+  page.init()
+  
+</script>

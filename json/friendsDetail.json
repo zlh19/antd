@@ -1,0 +1,28 @@
+{
+    "publishImgs":["/upload/1.jpg","/upload/2.jpg","/upload/1.jpg"],
+    "userName":"高鸟",
+    "userHeadImg":"/upload/1.jpg",
+    "userPublishContent":"发布信息发布信息",
+    "publishTime":"2017-08-02 14:00:01",
+    "commentCount":2,
+    "comment":[{
+        "userName":"高鸟",
+        "userHeadImg":"/upload/1.jpg",
+        "commentTime":"2017-08-02 14:00:01",
+        "commentInfor":[{
+            "replyName":"大嘴",
+            "commentText":"发布信息发布信息"
+        }]
+    },{
+        "userName":"高鸟2",
+        "userHeadImg":"/upload/2.jpg",
+        "commentTime":"2017-08-02 14:00:01",
+        "commentInfor":[{
+            "replyName":"大嘴2",
+            "commentText":"发布信息发布信息2"
+        }]
+    }],
+    "likeCount":12,
+    "selfLike":1,
+    "likeHeadImgs":["/upload/1.jpg","/upload/2.jpg","/upload/1.jpg"]
+}

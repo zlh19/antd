@@ -1,0 +1,21 @@
+{
+    "bicycleData":{
+        "distanceKm":1000,
+        "list":[{
+        "categoryName":"全身燃脂",
+        "lesson":[{
+                "img":"/upload/1.jpg",
+                "lessonName":"有氧",
+                "totaltimeDesc":1024,
+                "calorie":"100"
+
+            },{
+                "img":"/upload/2.jpg",
+                "lessonName":"无氧",
+                "totaltimeDesc":512,
+                "calorie":"60"
+
+            }]
+        }]
+    }
+}
